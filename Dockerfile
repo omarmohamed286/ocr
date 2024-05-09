@@ -14,8 +14,9 @@ COPY requirements.txt requirements.txt
 RUN pip3 install -r requirements.txt uvicorn python-multipart
 
 # Bundle app source
-COPY src ./src
+COPY . /app
 
+EXPOSE 80
 # Set the locale to C.UTF-8 for Python 3
 ENV LANG C.UTF-8
 
