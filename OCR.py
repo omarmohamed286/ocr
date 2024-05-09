@@ -13,7 +13,7 @@ import os
 
 # pytesseract.pytesseract.tesseract_cmd = r"Tesseract-OCR\tesseract.exe"
 
-pytesseract.pytesseract.tesseract_cmd = '/app/.apt/usr/bin/tesseract'
+# pytesseract.pytesseract.tesseract_cmd = '/app/.apt/usr/bin/tesseract'
 
 def process_image(image_path):
     try:
