@@ -1,15 +1,13 @@
 FROM ubuntu:18.04
 
-RUN apt-get --fix-missing update && apt-get --fix-broken install && apt-get install -y poppler-utils tesseract-ocr libtesseract-dev libleptonica-dev python3.8 python3-pip ffmpeg libsm6 libxext6
-
-# Get language data
-RUN apt-get install tesseract-ocr-eng tesseract-ocr-ara
+RUN apt-get --fix-missing update && apt-get --fix-broken install && apt-get install -y poppler-utils tesseract-ocr libtesseract-dev libleptonica-dev python3.8 python3-pip ffmpeg libsm6 libxext6 tesseract-ocr-eng tesseract-ocr-ara
 
 WORKDIR /app
 
 # Install app dependencies
 COPY requirements.txt requirements.txt
-RUN pip3 install -r requirements.txt uvicorn python-multipart
+RUN pip3 install -r requirements.txt
+RUN pip3 install uvicorn python-multipart
 
 # Bundle app source
 COPY . /app
