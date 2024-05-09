@@ -1,0 +1,5 @@
+fastapi==0.111.0
+pdf2image==1.17.0
+Pillow==10.0.0
+pytesseract==0.3.10
+Requests==2.31.0
