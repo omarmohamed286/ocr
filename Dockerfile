@@ -3,7 +3,7 @@ FROM python:3.9
 
 
 
-RUN apt-get update && apt-get install -y tesseract-ocr tesseract-ocr-eng tesseract-ocr-ara libtesseract-dev libleptonica-dev
+RUN apt-get update && apt-get install -y tesseract-ocr tesseract-ocr-eng tesseract-ocr-ara libtesseract-dev libleptonica-dev pip
 
 
 WORKDIR /app
@@ -12,7 +12,7 @@ COPY . /app
 
 
 COPY requirements.txt requirements.txt
-RUN pip install --trusted-host pypi.python.org --index-url https://pypi.org/simple/ -r requirements.txt
+RUN pip install -r requirements.txt
 RUN pip install uvicorn
 RUN pip install python-multipart
 
