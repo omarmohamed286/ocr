@@ -1,10 +1,9 @@
-FROM ubuntu:latest
+FROM python:3.11
 
 
 
 
-RUN apt-get update && apt-get install -y tesseract-ocr tesseract-ocr-eng tesseract-ocr-ara
-RUN apt-get install libtesseract-dev libleptonica-dev && apt-get install -y python3.11 && apt-get install -y python3-pip
+RUN apt-get update && apt-get install -y tesseract-ocr tesseract-ocr-eng tesseract-ocr-ara libtesseract-dev libleptonica-dev
 
 
 WORKDIR /app
