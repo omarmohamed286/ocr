@@ -2,15 +2,9 @@ FROM ubuntu:latest
 
 
 
-RUN apt-get --fix-missing update && apt-get --fix-broken install && apt-get install -y poppler-utils && apt-get install -y tesseract-ocr && \
-apt-get install -y libtesseract-dev && apt-get install -y libleptonica-dev && ldconfig && apt-get install -y python3.9 && \
-apt-get install -y python3-pip && apt install -y ffmpeg libsm6 libxext6
 
-
-
-# Get language data
-RUN apt-get install tesseract-ocr-eng tesseract-ocr-ara
-
+RUN apt-get update && apt-get install -y tesseract-ocr tesseract-ocr-eng tesseract-ocr-ara
+RUN apt-get install libtesseract-dev libleptonica-dev && apt-get install -y python3.11 && apt-get install -y python3-pip
 
 
 WORKDIR /app
