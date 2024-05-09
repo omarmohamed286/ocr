@@ -25,8 +25,27 @@ RUN mkdir src && cd /app/src && \
     make training && make training-install && \
     cd /usr/local/share/tessdata && wget https://github.com/tesseract-ocr/tessdata_best/raw/main/eng.traineddata
 
+RUN which Tesseract
+
 # Setting the data prefix
 ENV TESSDATA_PREFIX=/usr/local/share/tessdata
+
+RUN apt-get update && apt-get --reinstall install -y \
+    nginx \
+    python3 \
+    python3-dev \
+    python3-pip \
+    supervisor \
+    uwsgi \
+    uwsgi-plugin-python3 \
+  && rm -rf /var/lib/apt/lists/* \
+  && rm -rf /var/lib/apt/lists/* \
+  && pip3 install --upgrade pip \
+  && python3 -m pip install --upgrade setuptools \
+  && pip3 install --no-cache-dir  --force-reinstall -Iv grpcio
+
+COPY requirements.txt requirements.txt
+
 
 # Install libraries using pip installer
 RUN pip3 install -r requirements.txt
