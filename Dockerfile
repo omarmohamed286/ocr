@@ -12,7 +12,7 @@ COPY . /app
 
 
 COPY requirements.txt requirements.txt
-RUN pip install -r requirements.txt
+RUN pip install --trusted-host pypi.python.org -r requirements.txt
 RUN pip install uvicorn
 RUN pip install python-multipart
 
