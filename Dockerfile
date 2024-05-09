@@ -1,20 +1,24 @@
 FROM ubuntu:18.04
 
 
-RUN apt-get --fix-missing update && apt-get --fix-broken install && apt-get install -y poppler-utils tesseract-ocr libtesseract-dev libleptonica-dev python3.8 python3-pip ffmpeg libsm6 libxext6 tesseract-ocr-eng tesseract-ocr-ara
+RUN apt-get update \
+  && apt-get -y install tesseract-ocr tesseract-ocr-eng tesseract-ocr-ara libtesseract-dev libleptonica-dev \
+  && apt-get install -y python3 python3-distutils python3-pip \
+  && cd /usr/local/bin \
+  && ln -s /usr/bin/python3 python \
+  && pip3 --no-cache-dir install --upgrade pip \
+  && rm -rf /var/lib/apt/lists/*
 
+RUN apt update \
+  && apt-get install ffmpeg libsm6 libxext6 -y
+
+
+COPY . /app
 WORKDIR /app
 
-# Install app dependencies
-COPY requirements.txt requirements.txt
-RUN pip3 install -r requirements.txt
+RUN pip install -r requirements.txt
 RUN pip3 install uvicorn python-multipart
 
-# Bundle app source
-COPY . /app
-
 EXPOSE 80
-# Set the locale to C.UTF-8 for Python 3
-ENV LANG C.UTF-8
 
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
