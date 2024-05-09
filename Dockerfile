@@ -1,13 +1,7 @@
-FROM ubuntu:18.04
-
+FROM python:3.9-slim
 
 RUN apt-get update \
-  && apt-get -y install tesseract-ocr tesseract-ocr-eng tesseract-ocr-ara libtesseract-dev libleptonica-dev \
-  && apt-get install -y python3 python3-distutils python3-pip \
-  && cd /usr/local/bin \
-  && ln -s /usr/bin/python3 python \
-  && pip3 --no-cache-dir install --upgrade pip \
-  && rm -rf /var/lib/apt/lists/*
+  && apt-get -y install tesseract-ocr tesseract-ocr-eng tesseract-ocr-ara libtesseract-dev libleptonica-dev
 
 RUN apt update \
   && apt-get install ffmpeg libsm6 libxext6 -y
