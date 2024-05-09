@@ -6,6 +6,7 @@ WORKDIR /app
 
 # Install app dependencies
 COPY requirements.txt requirements.txt
+RUN pip3 install --upgrade pip setuptools wheel
 RUN pip3 install -r requirements.txt
 RUN pip3 install uvicorn python-multipart
 
