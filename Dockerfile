@@ -13,6 +13,6 @@ WORKDIR /app
 RUN pip install -r requirements.txt
 RUN pip3 install uvicorn python-multipart
 
-EXPOSE 80
+ARG PORT
 
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
+CMD uvicorn main:app --host 0.0.0.0 --port $PORT
